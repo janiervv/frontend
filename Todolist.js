@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Todo from './components/todo.js'
 
 const Todolist = () => {
   const [todo, setTodo] = useState({desc: '', date: ''});
@@ -14,7 +13,11 @@ const Todolist = () => {
     setTodos([...todos, todo]);
   }
 
-
+  function removeLine(index){
+      todos.splice(index, 1);
+      setTodos([...todos]);
+    }
+    
   return (
     <div>
       <form onSubmit={addTodo}>
@@ -22,7 +25,19 @@ const Todolist = () => {
         <input type="text" name="desc" onChange={inputChanged} value={todo.desc}/>
         <input type="submit" value="Add"/>
       </form>
-    <Todo todostolist={todos}/>
+      <div>
+      <table>
+        <tbody>
+            {todos.map((todo, index) => 
+                <tr key={index}>
+                      <td>{todo.date}</td>
+                      <td>{todo.desc}</td>
+                      <td><button onClick={() => {removeLine(index)}}>Delete</button></td>
+                </tr>)
+                }
+        </tbody>
+      </table>  
+    </div>
     </div>
   );
 };
