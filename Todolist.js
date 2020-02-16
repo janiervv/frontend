@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Todo from './components/todo.js'
+import ReactTable from 'react-table-v6';
+import 'react-table-v6/react-table.css';
 
 const Todolist = () => {
   const [todo, setTodo] = useState({desc: '', date: ''});
@@ -14,7 +15,29 @@ const Todolist = () => {
     setTodos([...todos, todo]);
   }
 
+  function removeLine(index){
+      todos.splice(index, 1);
+      setTodos([...todos]);
+    }
 
+    const columns = [
+      {
+        Header: 'Date',
+        accessor: 'date',
+        width: 150
+      },
+      {
+        Header: 'Description',
+        accessor: 'desc',
+        width: 400
+      },
+
+      {
+        Cell: ({index}) => <button id={index} onClick={() => {removeLine(index)}} >Delete</button>,
+        width: 70
+      }
+    ]
+    
   return (
     <div>
       <form onSubmit={addTodo}>
@@ -22,7 +45,9 @@ const Todolist = () => {
         <input type="text" name="desc" onChange={inputChanged} value={todo.desc}/>
         <input type="submit" value="Add"/>
       </form>
-    <Todo todostolist={todos}/>
+      <div>
+    <ReactTable data={todos} columns={columns}/>
+    </div>
     </div>
   );
 };
