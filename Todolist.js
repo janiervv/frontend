@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Todo from './components/Listpage.js'
 
 const Todolist = () => {
   const [todo, setTodo] = useState({desc: '', date: ''});
@@ -26,17 +27,7 @@ const Todolist = () => {
         <input type="submit" value="Add"/>
       </form>
       <div>
-      <table>
-        <tbody>
-            {todos.map((todo, index) => 
-                <tr key={index}>
-                      <td>{todo.date}</td>
-                      <td>{todo.desc}</td>
-                      <td><button onClick={() => {removeLine(index)}}>Delete</button></td>
-                </tr>)
-                }
-        </tbody>
-      </table>  
+      <Todo todostolist={todos} removeLine={removeLine} />
     </div>
     </div>
   );
