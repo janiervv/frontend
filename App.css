@@ -3,21 +3,21 @@
 }
 
 .App-header {
-  margin-left : auto;
-  margin-right:auto;
   background-color: #282c34;
-  height: 50px;
-  width: 250px;
+  height: 100px;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-
-table {
-  margin-left : auto;
-  margin-right:auto;
+.App-link {
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
